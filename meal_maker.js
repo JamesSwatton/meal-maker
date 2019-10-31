@@ -47,9 +47,23 @@ const menu = {
             break;
         }
     },
-    getRandomDishFromCourse
+    getRandomDishFromCourse(courseName) {
+        const dishes = this.courses;
+        const randomIndex = Math.floor(Math.random() * dishes.length);
+        return dishes[randomIndex];
+    },
+    generateRandomMeal() {
+        const appetizer = this.getRandomDishFromCourse('appetizers');
+        const main = this.getRandomDishFromCourse('main');
+        const dessert = this.getRandomDishFromCourse('dessert');
+        const mealTotalPrice = appetizer.price + main.price + dessert.price;
+        return `Your appetizer will be ${appetizer}, followed by ${main} for your main and ${dessert} for dessert. The total cost will be ${mealTotalPrice}.`;
+    }
 };
 
-menu.addDishToCourse('appetizers', 'soup', 10);
+menu.addDishToCourse('appetizers', 'soup', 5);
+menu.addDishToCourse('appetizers', 'salad', 4);
+menu.addDishToCourse('appetizers', 'pate', 6);
+menu.addDishToCourse('main', 'pasta', 9);
 console.log(menu._courses.appetizers);
 console.log(menu.courses);
